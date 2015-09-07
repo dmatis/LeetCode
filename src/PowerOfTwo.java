@@ -1,6 +1,9 @@
 
 public class PowerOfTwo {
     public static boolean isPowerOfTwo(int n) {
+        if (n == 0) {
+            return false;
+        }
         if (n == 1) {
             return true;
         }
@@ -9,7 +12,7 @@ public class PowerOfTwo {
         }
         return false;
     }
-    
+
     public static void main(String[] args) {
         System.out.println(isPowerOfTwo(2048));
     }
