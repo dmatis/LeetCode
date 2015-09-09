@@ -8,7 +8,6 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 
 /**
  * Will return 0 as default if no single integer is in original array
- * Program currently can only handle positive integers
  */
 public class SingleNumber {
 
@@ -25,13 +24,26 @@ public class SingleNumber {
 
         /** Current solution requires extra memory **/
         int[] tempArray = new int[nums.length];
+        int[] tempArrayNegValues = new int[nums.length];
 
         for (int i = 0; i < nums.length; i++) {
-            tempArray[nums[i]]++;
+            if (nums[i] < 0) {
+                int abs_num = nums[i]*= -1;
+                tempArrayNegValues[abs_num]++;
+            }
+            else tempArray[nums[i]]++;
         }
+
         for (int j = 0; j < tempArray.length; j++) {
             if (tempArray[j] == 1) {
                 return j;
+            }
+        }
+
+        /** Handling negative values **/
+        for (int k = 0; k < tempArrayNegValues.length; k++) {
+            if (tempArrayNegValues[k] == 1) {
+                return k*-1;
             }
         }
         return 0;
@@ -40,9 +52,14 @@ public class SingleNumber {
     public static void main(String[] args) {
         int[] array3 = {1,2,1,2,3,4,5,4,5};
         int[] array1 = {4,2,3,4,1,2,3};
-        int[] arrayOneElem = {1};
-        //System.out.println(singleNumber(array3));
-        //System.out.println(singleNumber(array1));
+        int[] arrayOneElem = {6};
+        int[] arrayNegValues = {-1, -1, -2};
+        int[] arrayNegAndPos = {-1, 2, 2};
+
+        System.out.println(singleNumber(array3));
+        System.out.println(singleNumber(array1));
         System.out.println(singleNumber(arrayOneElem));
+        System.out.println(singleNumber(arrayNegValues));
+        System.out.println(singleNumber(arrayNegAndPos));
     }
 }
