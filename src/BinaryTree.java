@@ -35,6 +35,17 @@ public class BinaryTree {
         return maxHeight;
     }
 
+    public boolean isSameTree(TreeNode node1, TreeNode node2) {
+        if (node1 == null && node2 == null) {
+            return true;
+        } else if (node1 == null || node2 == null) {
+            return false;
+        } else if (node1.val == node2.val) {
+            return (isSameTree(node1.left, node2.left) && isSameTree(node1.right, node2.right));
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 
         BinaryTree binaryTree = new BinaryTree();
@@ -53,5 +64,9 @@ public class BinaryTree {
         node5.right = node6;
 
         System.out.println(binaryTree.maxDepth(node1));
+
+        System.out.println(binaryTree.isSameTree(node1, node1));
+        System.out.println(binaryTree.isSameTree(node1, node3));
+
     }
 }
