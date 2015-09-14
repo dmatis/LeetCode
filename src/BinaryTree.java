@@ -46,6 +46,21 @@ public class BinaryTree {
         return false;
     }
 
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        /** Swap child nodes **/
+        TreeNode tempNode = root.left;
+        root.left = root.right;
+        root.right = tempNode;
+        /** perform swap recursively on child nodes **/
+        invertTree(root.left);
+        invertTree(root.right);
+        /** returns the original root after inversion **/
+        return root;
+    }
+
     public static void main(String[] args) {
 
         BinaryTree binaryTree = new BinaryTree();
@@ -56,17 +71,20 @@ public class BinaryTree {
         TreeNode node4 = binaryTree.new TreeNode(4);
         TreeNode node5 = binaryTree.new TreeNode(5);
         TreeNode node6 = binaryTree.new TreeNode(6);
+        TreeNode node7 = binaryTree.new TreeNode(7);
 
         node1.left = node2;
         node1.right = node3;
+        node2.left = node7;
         node2.right = node4;
         node3.right = node5;
-        node5.right = node6;
+        node3.left = node6;
 
         System.out.println(binaryTree.maxDepth(node1));
 
         System.out.println(binaryTree.isSameTree(node1, node1));
         System.out.println(binaryTree.isSameTree(node1, node3));
 
+        System.out.println(binaryTree.invertTree(node1));
     }
 }
