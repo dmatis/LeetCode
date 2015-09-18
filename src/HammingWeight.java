@@ -6,7 +6,7 @@ public class HammingWeight {
 
     public static void main(String[] args) {
         System.out.println(computeWeight(31));
-        System.out.println(computeWeightLog(31));
+        System.out.println(computeWeightLog(214748368));
     }
 
     /** O(n) solution **/
