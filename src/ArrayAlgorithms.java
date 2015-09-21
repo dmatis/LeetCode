@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class ArrayAlgorithms {
 
+    // naive O(n^2) solution
     public static void moveZeroes(int[] nums) {
         // iterate through the numbers in array
         for (int i = 0; i < nums.length - 1; i++) {
@@ -19,13 +20,29 @@ public class ArrayAlgorithms {
         }
     }
 
+    // Simpler O(n) solution
+    public static void moveZeroesEfficient(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[count] = nums[i];
+                count++;
+            }
+        }
+        // fill remaining values in array with zeroes
+        while (count < nums.length) {
+            nums[count] = 0;
+            count++;
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = {3,0,12,4,0,6,0};
         int[] noZeroes = {3,4,6,2,1};
         int[] manyZeroes = {3,0,0,0,4,0};
-        moveZeroes(nums);
-        moveZeroes(noZeroes);
-        moveZeroes(manyZeroes);
+        moveZeroesEfficient(nums);
+        moveZeroesEfficient(noZeroes);
+        moveZeroesEfficient(manyZeroes);
 
         System.out.println(Arrays.toString(nums));
         System.out.println(Arrays.toString(noZeroes));
