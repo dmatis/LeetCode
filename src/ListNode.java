@@ -22,10 +22,15 @@ public class ListNode {
         if (head.next == null) {
             return head;
         }
-        else if (head.val == head.next.val) {
-            head.next = head.next.next;
+        ListNode tempNode = head;
+        while(tempNode.next != null && tempNode.val == tempNode.next.val) {
+            tempNode.next = tempNode.next.next;
         }
-        else deleteDuplicates(head.next);
+        head.next = tempNode.next;
+        if (head.next == null) {
+            return head;
+        }
+        deleteDuplicates(head.next);
         return head;
     }
 
