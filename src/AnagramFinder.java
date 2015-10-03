@@ -12,7 +12,7 @@ public static boolean isAnagram(String s, String t) {
         Arrays.sort(word2);
         return Arrays.equals(word1, word2);
     }
-    
+
     public static void main(String[] args) {
         String s1 = "hello";
         String t1 = "elloh";
