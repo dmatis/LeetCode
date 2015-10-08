@@ -42,6 +42,16 @@ public class ListNode {
         printListNodes(head.next);
     }
 
+    public static ListNode reverseListNode(ListNode head) {
+        if (head.next == null) {
+            return head;
+        }
+        ListNode prevNode = head;
+        ListNode node = reverseListNode(head.next);
+        node.next = head;
+        return head;
+    }
+
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
@@ -49,16 +59,8 @@ public class ListNode {
         ListNode node3 = new ListNode(3);
 
         node1.next = node2;
-        node2.next = dupNode2;
-        dupNode2.next = node3;
+        node2.next = node3;
 
-        // (1) -> (2) -> (2) -> (3)
-        printListNodes(node1);
-
-        System.out.println("-------AFTER DELETING DUPLICATES:-------");
-        deleteDuplicates(node1);
-
-        // (1) -> (2) -> (3)
-        printListNodes(node1);
+        printListNodes(reverseListNode(node1));
     }
 }
