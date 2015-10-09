@@ -43,13 +43,13 @@ public class ListNode {
     }
 
     public static ListNode reverseListNode(ListNode head) {
-        if (head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
-        ListNode prevNode = head;
-        ListNode node = reverseListNode(head.next);
-        node.next = head;
-        return head;
+        ListNode remainingNode = reverseListNode(head.next);
+        head.next.next = head;
+        head.next = null;
+        return remainingNode;
     }
 
     public static void main(String[] args) {
@@ -60,7 +60,8 @@ public class ListNode {
 
         node1.next = node2;
         node2.next = node3;
-
+        printListNodes(node1);
+        System.out.println("-----AFTER REVERSING NODES:-----");
         printListNodes(reverseListNode(node1));
     }
 }
